@@ -13,8 +13,8 @@ import pytesseract
 import os
 
 
-def process_image(iamge_name, lang_code):
-    return pytesseract.image_to_string(Image.open(iamge_name), lang=lang_code)
+def process_image(image_name, lang_code):
+    return pytesseract.image_to_string(Image.open(image_name), lang=lang_code)
 
 
 def output_file(filename, data):
@@ -23,20 +23,11 @@ def output_file(filename, data):
     file.close()
 
 
-def read_pdf(pdf):
-
-    # Store Pdf with convert_from_path function
-    images = convert_from_path(pdf)
-
-    for i in range(len(images)):
-        # Save pages as images in the pdf
-        images[i].save("page" + str(i) + ".jpg", "JPEG")
-    return len(images)
-
-
 def main(pdf):
     result = ""
-    for i in range(read_pdf(pdf)):
+    images = convert_from_path(pdf)
+    for i in range(len(images)):
+        images[i].save("page" + str(i) + ".jpg", "JPEG")
         data_eng = process_image("page" + str(i) + ".jpg", "fas+eng")
         result += data_eng
         os.remove("page" + str(i) + ".jpg")
