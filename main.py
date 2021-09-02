@@ -12,8 +12,9 @@ from PIL import Image
 import pytesseract
 import os
 
+
 def process_image(iamge_name, lang_code):
-    return pytesseract.image_to_string(Image.open(iamge_name), lang="fas")
+    return pytesseract.image_to_string(Image.open(iamge_name), lang=lang_code)
 
 
 def output_file(filename, data):
@@ -29,18 +30,18 @@ def read_pdf(pdf):
 
     for i in range(len(images)):
         # Save pages as images in the pdf
-        images[i].save('page' + str(i) + '.jpg', 'JPEG')
+        images[i].save("page" + str(i) + ".jpg", "JPEG")
     return len(images)
 
 
 def main(pdf):
     result = ""
     for i in range(read_pdf(pdf)):
-        data_eng = process_image('page' + str(i) + '.jpg', "fas")
+        data_eng = process_image("page" + str(i) + ".jpg", "fas+eng")
         result += data_eng
-        os.remove('page' + str(i) + '.jpg')
+        os.remove("page" + str(i) + ".jpg")
     output_file(f"result.txt", result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main("جنرالیزاسیون.pdf")
