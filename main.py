@@ -1,12 +1,3 @@
-# import pytesseract
-# from PIL import Image
-# img = Image.open("761a95a8-b8fb-49e7-a6c3-3d9dc203b9b0.jpeg")
-# pytesseract.pytesseract.tesseract_cmd("/usr/share/tesseract-ocr/4.00/tessdata/")
-#
-# result = pytesseract.image_to_string(img, lang="fas")
-# with open("converted image.text", mode="w", encoding="utf-8") as text_file:
-#     text_file.write(result)
-
 from pdf2image import convert_from_path
 from PIL import Image
 import pytesseract
@@ -18,7 +9,7 @@ def process_image(image_name, lang_code):
 
 
 def output_file(filename, data):
-    file = open(filename, "w+")
+    file = open(filename, "w")
     file.write(data)
     file.close()
 
