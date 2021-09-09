@@ -26,5 +26,5 @@ def main(pdf):
 
 
 if __name__ == "__main__":
-    pdf_name = "جنرالیزاسیون.pdf"
+    pdf_name = "namePDF.pdf"
     main(pdf_name)
